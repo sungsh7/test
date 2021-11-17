@@ -5,8 +5,117 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+<style>
+*{margin: 0;padding: 0; box-sizing: border-box;}
+li{list-style:none;}
+a{text-decoration: none;}
+#container {
+  display: flex;
+  background-color: lightpink;
+}
+#nav { 
+  width: 20vw;
+  height: 100vh;
+  background-color: blueviolet ;
+  position: relative;
+  display: flex;
+  align-items: center;
+  left: -15vw;
+  transition: 0.8s;
+  opacity: 0.5;
+  
+} 
+/* 포지션을 잡아주고 , left 를 넣어서 화면에서 가려준다  */
+#menu {
+  width: 10vw;
+  height: 30vh;
+  
+  margin-left: 5vw;
+}
+#menu li {
+  width: 10vw;
+  height: 10vh;
+  text-align: center;
+  color: aliceblue;
+}
+#button {
+  width: 3vw;
+  height: 3vw;
+  position: relative;
+  top: 10vh;
+  left: -10vw;
+  z-index: 1;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+#button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#show {
+  width: 30vw;
+  height: 30vw;
+  margin: 10vw 10vh;
+  background-color: lightskyblue;
+  z-index: -1;
+  text-align: center;
+  color: azure;
+  font-size: 3rem;
+
+}
+</style>
+
 </head>
 <body>
-  hihihihi
+  <div id="container">
+  <div id="nav">
+    <ul id="menu">
+      <li id="item1">hi</li>
+      <li id="item2">hello </li>
+      <li id="item3">안녕</li>
+    </ul>
+  </div>
+  <button id="button"><img src="Hamburger_icon.svg.png" alt="함바구"></button>
+  <div id="show">뭐야꺼져</div>
+</div>
+    <script>
+      // 버튼을 클릭하면
+      //왼쪽에서 메뉴가 슬라이드 된다 
+      //메뉴가 슬라이드 되며 백그라운드 컬러가 변경된다
+      //더블클릭하면 다시 들어간다
+      //문제점 : 버튼의 위치가 계속 바뀐다 > 부모를 하나 새로 만들어서 
+      // display : flex 사용으로 해결
+      //문제점 2 : 햄버거 메뉴 이미지를 넣었더니 버튼기본 배경색상이 안없어짐
+      //버튼 위에 이미지가 올라와 있는 모양임
+      //버튼에 backgroundColor  사용 .> 메뉴가 나와도 배경색이 보임 안이쁨
+      // transparent  넣어주니 해결
+      //보더가 문제 >값을 0 주니까 없어짐
+
+      //각종 소스들 전부 초기화 해줌 
+      //클릭이벤트&&더블클릭이벤트부여후 각 스타일 변경
+      const $btn = document.querySelector('#button');
+      const $nav = document.querySelector('#nav');
+      const $item = document.querySelector('#item2');
+      const $show = document.querySelector('#show');
+      $btn.addEventListener('click',()=>{
+        $nav.style.left = '0';
+        $nav.style.backgroundColor = 'skyblue';
+      });
+      $btn.addEventListener('dblclick',()=>{
+        $nav.style.left = '-15vw';
+        $nav.style.backgroundColor = 'blueviolet';
+      });
+      $item.addEventListener('click',()=>{
+        $show.style.zIndex = '1';
+      });
+      $item.addEventListener('dblclick',()=>{
+        $show.style.zIndex = '-1';
+      });
+      // show 가 menu가 옆으로 들어가면 알아서 없어지게 해보고싶은데 
+      //잘 안되서 연구가 더 필요합니다.
+    </script>
+ 
 </body>
 </html>
