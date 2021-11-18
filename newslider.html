@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0;padding: 0;box-sizing: border-box;}
+    li{list-style: none;}
+
+
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #box {
+      width: 50vw;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      border: 1px solid black;
+      
+    }
+    #box #slider {
+      width: 50vw;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+     
+    }
+    #box #slider img {
+      width: inherit;
+      height: inherit;
+    }
+
+    button {
+      width: 10vw;
+      height: 4vh;
+      border: none;
+
+    }
+  </style>
+</head>
+<body>
+  
+<div id="container">
+  <ul id="box">
+    <li id="slider">
+      <img src="img/cat1.jpeg" alt="cat1">
+    </li>
+    <li id="slider">
+      <img src="img/cat2.jpg" alt="cat2">
+    </li>
+    <li id="slider">
+      <img src="img/cat3.jpg" alt="cat3">
+    </li>
+    <li id="slider">
+      <img src="img/cat4.jpg" alt="cat4">
+    </li>
+  </ul>
+  <button id="button"></button>
+
+</div>
+
+
+<script>
+
+//슬라이드 형식으로 만들고싶다.
+
+ const $container = document.querySelector('#container');
+ const $box = document.querySelector('#box'); 
+ const $lItem =document.querySelectorAll('li');
+ const $btn = document.querySelector('#button'); 
+// console.log($container);
+// console.log($box);
+// console.log($listItem);
+// console.log($btn);
+for (let i = 0; i <$lItem.length; i++){
+   $lItem[i].style.opacity = 0;
+   $lItem[i].style.display = "none";
+
+}
+let index = 0;
+ $btn.addEventListener('click',()=>{
+  if(index < $lItem.length) {
+    $lItem[index].style.opacity = 1 ;
+    $lItem[index].style.display = "list-item";
+    if ($lItem[index].previousElementSibling !== null) {
+      
+    $lItem[index].previousElementSibling.style.display = "none "; 
+    }  
+    index += 1;
+  }else {
+    $lItem[index - 1 ].style.display ="none";
+    $lItem[0].style.display ="list-item";
+    index =1 ; 
+  }
+
+
+ });
+
+
+</script>
+
+
+</body>
+</html>
